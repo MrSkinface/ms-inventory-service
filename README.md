@@ -1,1 +1,4 @@
-# ms-inventory-service
+
+
+# Inventory microservice
+Inventory microservice
