@@ -38,7 +38,6 @@ public class InventoryServiceImpl implements InventoryService {
         order.getLines().stream().filter(line -> line.getOrderedQty() != null)
                 .peek(line -> Optional.ofNullable(line.getAllocatedQty()).ifPresentOrElse(val -> {}, () -> line.setAllocatedQty(0)))
                 .peek(line -> totalOrdered.addAndGet(line.getOrderedQty()))
-                .filter(line -> line.getOrderedQty() - line.getAllocatedQty() > 0)
                 .forEach(line -> repo.findInventoriesByBeerId(line.getBeerId()).stream()
                         .filter(inventory -> inventory.getQuantityOnHand() != null)
                         .filter(inventory -> inventory.getQuantityOnHand() > 0)
